@@ -1,3 +1,16 @@
 body {
   padding: 30px;
 }
+
+.logo {
+  width: 190px;
+}
+
+.div-center {
+  margin: auto;
+  padding: 10px;
+}
+
+.center {
+  text-align: center;
+}
