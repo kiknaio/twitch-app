@@ -5,7 +5,7 @@ class Navigation extends Component {
   render () {
     return (
         <Row>
-          <Col sm="1/3" className="div-center">
+          <Col sm="2/5" className="div-center">
             <Card>
               <Row>
                 <Col sm="1/3" className="center">
