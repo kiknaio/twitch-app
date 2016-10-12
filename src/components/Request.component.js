@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import request from 'superagent';
 
-class Request extends Component {
-
+class Request extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -17,41 +16,28 @@ class Request extends Component {
   }
 
   componentDidMount() {
-    this.state.channels.forEach(function(channel) {
-      request
-        .get('https://api.twitch.tv/kraken/channels/' + channel)
-        .set({'Client-ID': '8y4c38tqcnhbanpq2023ro8bcos4ykb'})
-        .end(function (err, res) {
-          this.state.items.setState({
-            items: this.state.items.push(res)
-          }).bind(Request);
-        });
-      // this.getChannel(channel);
-    });
+    this.state.channels.forEach(this.getChannel.bind(this));
   }
 
   getChannel(arg) {
     request
       .get('https://api.twitch.tv/kraken/channels/' + arg)
       .set({'Client-ID': '8y4c38tqcnhbanpq2023ro8bcos4ykb'})
-      .end(function (err, res) {
-        this.setState({
-          items: this.state.items.push(res)
-        })
+      .end( (err, res) => {
+        let items = this.state.items;
+        items.push(res.body);
+        this.setState({ items });
       });
   }
 
-
-
-  render () {
-    console.log(this.state.items);
+  render() {
     return (
       <div>
-        {this.state.items}
+        {this.state.items.map((item,index) => <span key={index}>{item.status}</span>)}
       </div>
     );
   }
-};
+}
 
 
 
