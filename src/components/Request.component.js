@@ -33,7 +33,7 @@ class Request extends React.Component {
   render() {
     return (
       <div>
-        {this.state.items.map((item,index) => <span key={index}>{item.status}</span>)}
+        {this.state.items.map((item,index) => <h1 key={index}>{item.status}</h1>)}
       </div>
     );
   }
